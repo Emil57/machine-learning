@@ -1,0 +1,23 @@
+stages:
+  prepare:
+    cmd: python src/ml_project/prepare_data.py
+    outs:
+      - data/train.csv
+
+  train:
+    cmd: python src/ml_project/train.py
+    deps:
+      - src/ml_project/train.py
+      - data/train.csv
+    outs:
+      - models/logistic.joblib
+      - models/random_forest.joblib
+
+  evaluate:
+    cmd: python src/ml_project/evaluate.py
+    deps:
+      - src/ml_project/evaluate.py
+      - models/logistic.joblib
+      - models/random_forest.joblib
+    metrics:
+      - metrics/metrics.json
