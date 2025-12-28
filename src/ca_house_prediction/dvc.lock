@@ -21,22 +21,22 @@ stages:
       size: 1423529
     - path: prepare_data.py
       hash: md5
-      md5: 0bf776be7726636a81323d5601be1f0f
-      size: 1007
+      md5: 421f6922f630e2461bb3e4cbe20ff77b
+      size: 1322
     outs:
     - path: ../../data/ca_house_prediction/X_test.csv
       hash: md5
-      md5: c9c0cbec217900d83feba99636308648
-      size: 32163
+      md5: 096dc4b921c8f6b27c7a8dbfa8219593
+      size: 32156
     - path: ../../data/ca_house_prediction/X_train.csv
       hash: md5
-      md5: 252f25abd3ae129c5cd31082074c6417
-      size: 128811
+      md5: 74cc03e92f13153658531506ea429929
+      size: 128804
     - path: ../../data/ca_house_prediction/y_test.csv
       hash: md5
-      md5: 522f50a9fa80cb18b554f31ef582beff
-      size: 40570
+      md5: bc2f417c379a0e10918dfed167aaaad8
+      size: 40563
     - path: ../../data/ca_house_prediction/y_train.csv
       hash: md5
-      md5: 78e6b95ac0a752310aa52c373ae42519
-      size: 162274
+      md5: 84eb54b3506b5e08b50e141c2f6cb617
+      size: 162267

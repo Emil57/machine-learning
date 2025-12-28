@@ -4,13 +4,23 @@ from sklearn.model_selection import train_test_split
 
 output_dir = os.path.join(os.path.abspath("../../"), "data", "ca_house_prediction")    
 try:
-
     data = pd.read_csv(f"{output_dir}/housing.csv")
     print(data.head())
-    # Features and target
-    X = data[['median_income']]   # Median income (single feature for simplicity)
-    y = data['median_house_value']  # Median house value
 
+    data.rename(columns={
+        "median_income": "MedInc",
+        "housing_median_age": "HouseAge",
+        "total_rooms": "AveRooms",
+        "total_bedrooms": "AveBedrms",
+        "population": "Population",
+        "households": "Households",
+        "median_house_value": "MedHouseVal"
+    }, inplace=True)
+
+    # Features and target
+    X = data[['MedInc']]   # Median income (single feature for simplicity)
+    y = data['MedHouseVal']  # Median house value
+    
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42
     )
