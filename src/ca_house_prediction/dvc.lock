@@ -40,3 +40,23 @@ stages:
       hash: md5
       md5: 84eb54b3506b5e08b50e141c2f6cb617
       size: 162267
+  train:
+    cmd: python train_model.py
+    deps:
+    - path: ../../data/ca_house_prediction/X_train.csv
+      hash: md5
+      md5: 74cc03e92f13153658531506ea429929
+      size: 128804
+    - path: ../../data/ca_house_prediction/y_train.csv
+      hash: md5
+      md5: 84eb54b3506b5e08b50e141c2f6cb617
+      size: 162267
+    - path: train_model.py
+      hash: md5
+      md5: 7ebf5c86b7e162908b1d18178a3036ed
+      size: 537
+    outs:
+    - path: ../../models/ca_house_prediction/model.pkl
+      hash: md5
+      md5: 5ba5e0930d648745660ec719e582acfd
+      size: 833

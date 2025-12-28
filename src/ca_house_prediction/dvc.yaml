@@ -16,3 +16,12 @@ stages:
     - ../../data/ca_house_prediction/X_test.csv
     - ../../data/ca_house_prediction/y_train.csv
     - ../../data/ca_house_prediction/y_test.csv
+
+  train:
+    cmd: python train_model.py
+    deps:
+    - train_model.py
+    - ../../data/ca_house_prediction/X_train.csv
+    - ../../data/ca_house_prediction/y_train.csv
+    outs:
+    - ../../models/ca_house_prediction/model.pkl
