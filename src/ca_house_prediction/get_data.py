@@ -6,8 +6,7 @@ import kaggle
 
 try:
     dataset = "camnugent/california-housing-prices"
-    output_dir = os.path.join(os.path.abspath("../../"), "data")
-    
+    output_dir = os.path.join(os.path.abspath("../../"), "data", "ca_house_prediction")    
     # Make sure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 

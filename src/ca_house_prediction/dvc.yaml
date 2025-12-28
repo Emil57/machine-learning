@@ -4,4 +4,15 @@ stages:
     deps:
     - get_data.py
     outs:
-    - ../../data/housing.csv
+    - ../../data/ca_house_prediction/housing.csv
+
+  prepare:
+    cmd: python prepare_data.py
+    deps:
+    - prepare_data.py
+    - ../../data/ca_house_prediction/housing.csv
+    outs:
+    - ../../data/ca_house_prediction/X_train.csv
+    - ../../data/ca_house_prediction/X_test.csv
+    - ../../data/ca_house_prediction/y_train.csv
+    - ../../data/ca_house_prediction/y_test.csv
