@@ -1,0 +1,7 @@
+stages:
+  get_data:
+    cmd: python get_data.py
+    deps:
+    - get_data.py
+    outs:
+    - ../../data/california_housing.csv
