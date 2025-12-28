@@ -60,3 +60,27 @@ stages:
       hash: md5
       md5: 5ba5e0930d648745660ec719e582acfd
       size: 833
+  evaluate:
+    cmd: python evaluate_model.py
+    deps:
+    - path: ../../data/ca_house_prediction/X_test.csv
+      hash: md5
+      md5: 096dc4b921c8f6b27c7a8dbfa8219593
+      size: 32156
+    - path: ../../data/ca_house_prediction/y_test.csv
+      hash: md5
+      md5: bc2f417c379a0e10918dfed167aaaad8
+      size: 40563
+    - path: ../../models/ca_house_prediction/model.pkl
+      hash: md5
+      md5: 5ba5e0930d648745660ec719e582acfd
+      size: 833
+    - path: evaluate_model.py
+      hash: md5
+      md5: f23eada935a96216a14a4c0eafc9b0d6
+      size: 1216
+    outs:
+    - path: ../../metrics/ca_house_prediction/metrics.json
+      hash: md5
+      md5: f2db58f83cd0f03a8298e9b7c9965220
+      size: 181

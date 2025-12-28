@@ -25,3 +25,13 @@ stages:
     - ../../data/ca_house_prediction/y_train.csv
     outs:
     - ../../models/ca_house_prediction/model.pkl
+
+  evaluate:
+    cmd: python evaluate_model.py
+    deps:
+    - evaluate_model.py
+    - ../../models/ca_house_prediction/model.pkl
+    - ../../data/ca_house_prediction/X_test.csv
+    - ../../data/ca_house_prediction/y_test.csv
+    metrics:
+    - ../../metrics/ca_house_prediction/metrics.json
