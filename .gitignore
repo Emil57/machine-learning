@@ -1,3 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.Python
+env/
+.venv/
+venv/
+.pytest_cache/
+
+# DVC
+.dvc/cache/
+
+# Editor
+.vscode/
+.idea/
+
+# Data and models (DVC will manage data; keep local copies if desired)
+data/
+models/
+metrics/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
