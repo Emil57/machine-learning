@@ -1,0 +1,14 @@
+schema: '2.0'
+stages:
+  get_data:
+    cmd: python get_data.py
+    deps:
+    - path: get_data.py
+      hash: md5
+      md5: 57c115216c4a331701984a3fc776c4fc
+      size: 623
+    outs:
+    - path: ../../data/housing.csv
+      hash: md5
+      md5: d1c47305887e2252bf1ccbd74ff159a6
+      size: 1423529

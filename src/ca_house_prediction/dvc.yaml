@@ -4,4 +4,4 @@ stages:
     deps:
     - get_data.py
     outs:
-    - ../../data/california_housing.csv
+    - ../../data/housing.csv

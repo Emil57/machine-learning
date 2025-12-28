@@ -1,22 +1,19 @@
-from sklearn.datasets import fetch_california_housing
+import os
+import kaggle
 
-OUTPUT_FILE = 'data/california_housing.csv'
+# Ensure Kaggle API is configured
+# kaggle.json must be in ~/.kaggle/ or C:\Users\<YourUsername>\.kaggle\
+
 try:
+    dataset = "camnugent/california-housing-prices"
+    output_dir = os.path.join(os.path.abspath("../../"), "data")
+    
+    # Make sure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
 
-    # Load dataset
-    housing = fetch_california_housing(as_frame=True)
-    data = housing.frame
-
-    # Features and target
-    X = data[['MedInc']]   # Median income (single feature for simplicity)
-    y = data['MedHouseVal']  # Median house value
-
-    print(data.head())
-
-    # Save to CSV
-    data.to_csv(OUTPUT_FILE, index=False)
-except Exception as e:
-    print(f"Error fetching California housing data: {e}")
-
-finally:
-    print(f'Finally block')
+    # Download dataset
+    print(f"Downloading {dataset} to {output_dir}...")
+    kaggle.api.dataset_download_files(dataset, path=output_dir, unzip=True)
+    print("Download complete. Files are in:", output_dir)
+except Exception as e: 
+    print(f'Error: {e}')
