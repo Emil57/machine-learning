@@ -5,8 +5,7 @@ on:
     inputs:
       environment:
         description: 'Environment'
-        required: true
-        default: 'dev'
+        required: false
         type: environment
       model-name:
         description: 'Model Name'
@@ -31,7 +30,7 @@ jobs:
       - name: Install Poetry
         uses: abatilo/actions-poetry@v3
         with:
-          poetry-version: ${{ matrix.poetry-version }}
+          poetry-version: latest
 
       - name: Install project dependencies
         run: poetry install
