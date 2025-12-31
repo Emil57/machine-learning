@@ -37,4 +37,4 @@ jobs:
 
       - name: GTO Show
         run: |
-          gto show
+          poetry run gto show
