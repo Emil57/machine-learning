@@ -1,0 +1,41 @@
+name: "Promote Models in GTO"
+run-name: "Env ${{ inputs.environment }} - Promote Models"
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'dev'
+        type: environment
+      model-name:
+        description: 'Model Name'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  promote-model:
+    name: "Promote Models"
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v3
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+
+      - name: Install project dependencies
+        run: poetry install
+
+      - name: GTO Show
+        run: |
+          gto show
