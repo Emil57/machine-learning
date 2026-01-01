@@ -13,6 +13,9 @@ on:
         default: ''
         type: string
 
+permissions: 
+  contents: write
+  
 jobs:
   promote-model:
     name: "Promote Models"
@@ -21,6 +24,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true # ensures tags are available for GTO
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,6 +41,19 @@ jobs:
       - name: Install project dependencies
         run: poetry install
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: GTO Show
         run: |
           poetry run gto show
+
+      - name: GTO Promote model
+        run: |
+          version=$(poetry run gto show ca-housing-model@latest --version)
+
+          echo "$version"
+          poetry run gto assign ${{ inputs.model-name }} --version $version --stage ${{ inputs.environment }} || echo "Model promotion failed"
+          git push origin --tags || echo "No tags to push"
