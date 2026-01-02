@@ -1,0 +1,20 @@
+stages:
+  get_data:
+    cmd: python get_data.py
+    deps:
+    - get_data.py
+    outs:
+    - ../../artifacts/f1/data/circuits.csv
+    - ../../artifacts/f1/data/constructor_results.csv
+    - ../../artifacts/f1/data/constructors.csv
+    - ../../artifacts/f1/data/lap_times.csv
+    - ../../artifacts/f1/data/pit_stops.csv
+    - ../../artifacts/f1/data/qualifying.csv
+    - ../../artifacts/f1/data/races.csv
+    - ../../artifacts/f1/data/results.csv
+    - ../../artifacts/f1/data/seasons.csv
+    - ../../artifacts/f1/data/driver_standings.csv
+    - ../../artifacts/f1/data/constructor_standings.csv
+    - ../../artifacts/f1/data/drivers.csv
+    - ../../artifacts/f1/data/status.csv
+    - ../../artifacts/f1/data/sprint_results.csv
