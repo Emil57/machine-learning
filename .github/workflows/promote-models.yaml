@@ -5,8 +5,7 @@ on:
     inputs:
       environment:
         description: 'Environment'
-        required: true
-        default: 'dev'
+        required: false
         type: environment
       model-name:
         description: 'Model Name'
@@ -14,6 +13,9 @@ on:
         default: ''
         type: string
 
+permissions: 
+  contents: write
+  
 jobs:
   promote-model:
     name: "Promote Models"
@@ -22,6 +24,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true # ensures tags are available for GTO
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,11 +36,31 @@ jobs:
       - name: Install Poetry
         uses: abatilo/actions-poetry@v3
         with:
-          poetry-version: ${{ matrix.poetry-version }}
+          poetry-version: latest
 
       - name: Install project dependencies
         run: poetry install
 
-      - name: GTO Show
+      - name: Configure Git
         run: |
-          gto show
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Ensure GTO is working
+        run: |
+          poetry run gto show
+
+      - name: Check and register a new model
+        id: register
+        if : ${{ inputs.model-name != '' }}
+        run: |
+          poetry run gto register ${{ inputs.model-name }} --version v0.0.1
+
+      - name: GTO Promote model
+        if: ${{ inputs.model-name != '' || steps.register.outcome == 'failed' }}
+        run: |
+          version=$(poetry run gto show ca-housing-model@latest --version)
+
+          echo "$version"
+          poetry run gto assign ${{ inputs.model-name }} --version $version --stage ${{ inputs.environment }} || echo "Model promotion failed"
+          git push origin --tags || echo "No tags to push"

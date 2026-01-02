@@ -2,8 +2,14 @@ import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-output_dir = os.path.join(os.path.abspath("../../"), "data", "ca_house_prediction")    
 try:
+    output_dir = os.path.join(
+        os.path.abspath("../../"), 
+        "artifacts", 
+        "ca_house_prediction", 
+        "data"
+    )
+
     data = pd.read_csv(f"{output_dir}/housing.csv")
     print(data.head())
 

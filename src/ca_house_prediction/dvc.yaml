@@ -4,34 +4,34 @@ stages:
     deps:
     - get_data.py
     outs:
-    - ../../data/ca_house_prediction/housing.csv
+    - ../../artifacts/ca_house_prediction/data/housing.csv
 
   prepare:
     cmd: python prepare_data.py
     deps:
     - prepare_data.py
-    - ../../data/ca_house_prediction/housing.csv
+    - ../../artifacts/ca_house_prediction/data/housing.csv
     outs:
-    - ../../data/ca_house_prediction/X_train.csv
-    - ../../data/ca_house_prediction/X_test.csv
-    - ../../data/ca_house_prediction/y_train.csv
-    - ../../data/ca_house_prediction/y_test.csv
+    - ../../artifacts/ca_house_prediction/data/X_train.csv
+    - ../../artifacts/ca_house_prediction/data/X_test.csv
+    - ../../artifacts/ca_house_prediction/data/y_train.csv
+    - ../../artifacts/ca_house_prediction/data/y_test.csv
 
   train:
     cmd: python train_model.py
     deps:
     - train_model.py
-    - ../../data/ca_house_prediction/X_train.csv
-    - ../../data/ca_house_prediction/y_train.csv
+    - ../../artifacts/ca_house_prediction/data/X_train.csv
+    - ../../artifacts/ca_house_prediction/data/y_train.csv
     outs:
-    - ../../models/ca_house_prediction/model.pkl
+    - ../../artifacts/ca_house_prediction/models/model.pkl
 
   evaluate:
     cmd: python evaluate_model.py
     deps:
     - evaluate_model.py
-    - ../../models/ca_house_prediction/model.pkl
-    - ../../data/ca_house_prediction/X_test.csv
-    - ../../data/ca_house_prediction/y_test.csv
+    - ../../artifacts/ca_house_prediction/models/model.pkl
+    - ../../artifacts/ca_house_prediction/data/X_test.csv
+    - ../../artifacts/ca_house_prediction/data/y_test.csv
     metrics:
-    - ../../metrics/ca_house_prediction/metrics.json
+    - ../../artifacts/ca_house_prediction/metrics/metrics.json

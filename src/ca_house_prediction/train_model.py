@@ -4,7 +4,12 @@ from sklearn.linear_model import LinearRegression
 
 from ca_house_prediction.prepare_data import X_train, y_train
 
-output_dir = os.path.join(os.path.abspath("../../"), "models", "ca_house_prediction")    
+output_dir = os.path.join(
+    os.path.abspath("../../"), 
+    "artifacts", 
+    "ca_house_prediction", 
+    "models"
+)    
 
 try:
     print(f'Data Shape: {X_train.shape}, {y_train.shape}')

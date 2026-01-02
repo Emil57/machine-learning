@@ -6,7 +6,12 @@ import json
 
 
 try:
-    model_dir = os.path.join(os.path.abspath("../../"), "models", "ca_house_prediction")    
+    model_dir = os.path.join(
+        os.path.abspath("../../"), 
+        "artifacts", 
+        "ca_house_prediction", 
+        "models"
+    )
 
     model = joblib.load(f"{model_dir}/model.pkl")
 
@@ -17,8 +22,12 @@ try:
     print("Mean Squared Error:", mean_squared_error(y_test, y_pred))
     print("R² Score:", r2_score(y_test, y_pred))
 
-
-    metrics_dir = os.path.join(os.path.abspath("../../"), "metrics", "ca_house_prediction")
+    metrics_dir = os.path.join(
+        os.path.abspath("../../"),
+        "artifacts",
+        "ca_house_prediction",
+        "metrics"
+    )
     os.makedirs(metrics_dir, exist_ok=True)
 
     # After training and prediction
