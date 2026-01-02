@@ -6,7 +6,8 @@ OUTPUT_DIR = os.path.join(
         os.path.abspath("../../"), 
         "artifacts", 
         "f1", 
-        "data"
+        "data",
+        "raw"
     )    
 try: 
     # Make sure output directory exists

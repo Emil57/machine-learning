@@ -2,19 +2,33 @@ stages:
   get_data:
     cmd: python get_data.py
     deps:
-    - get_data.py
+      - get_data.py
     outs:
-    - ../../artifacts/f1/data/circuits.csv
-    - ../../artifacts/f1/data/constructor_results.csv
-    - ../../artifacts/f1/data/constructors.csv
-    - ../../artifacts/f1/data/lap_times.csv
-    - ../../artifacts/f1/data/pit_stops.csv
-    - ../../artifacts/f1/data/qualifying.csv
-    - ../../artifacts/f1/data/races.csv
-    - ../../artifacts/f1/data/results.csv
-    - ../../artifacts/f1/data/seasons.csv
-    - ../../artifacts/f1/data/driver_standings.csv
-    - ../../artifacts/f1/data/constructor_standings.csv
-    - ../../artifacts/f1/data/drivers.csv
-    - ../../artifacts/f1/data/status.csv
-    - ../../artifacts/f1/data/sprint_results.csv
+      - ../../artifacts/f1/data/raw/circuits.csv
+      - ../../artifacts/f1/data/raw/constructor_results.csv
+      - ../../artifacts/f1/data/raw/constructors.csv
+      - ../../artifacts/f1/data/raw/lap_times.csv
+      - ../../artifacts/f1/data/raw/pit_stops.csv
+      - ../../artifacts/f1/data/raw/qualifying.csv
+      - ../../artifacts/f1/data/raw/races.csv
+      - ../../artifacts/f1/data/raw/results.csv
+      - ../../artifacts/f1/data/raw/seasons.csv
+      - ../../artifacts/f1/data/raw/driver_standings.csv
+      - ../../artifacts/f1/data/raw/constructor_standings.csv
+      - ../../artifacts/f1/data/raw/drivers.csv
+      - ../../artifacts/f1/data/raw/status.csv
+      - ../../artifacts/f1/data/raw/sprint_results.csv
+
+  prepare:
+    cmd: python prepare_data.py
+    deps:
+      - prepare_data.py
+      - ../../artifacts/f1/data/raw/circuits.csv
+      - ../../artifacts/f1/data/raw/constructor_results.csv
+      - ../../artifacts/f1/data/raw/constructors.csv
+      - ../../artifacts/f1/data/raw/qualifying.csv
+      - ../../artifacts/f1/data/raw/races.csv
+      - ../../artifacts/f1/data/raw/results.csv
+      - ../../artifacts/f1/data/raw/drivers.csv
+    outs:
+      - ../../artifacts/f1/data/prepared/prepared_data.csv
