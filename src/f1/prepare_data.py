@@ -39,6 +39,7 @@ try:
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     df.to_csv(f"{OUTPUT_DIR}/prepared_data.csv", index=False)
     print(f"Output File: {OUTPUT_DIR}/prepared_data.csv")
+
 except FileNotFoundError as e: 
     print(f'Error: {e}')
     raise

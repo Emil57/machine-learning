@@ -5,8 +5,8 @@ stages:
     deps:
     - path: get_data.py
       hash: md5
-      md5: a60c6f4d217e065772a3db4ccd24efd9
-      size: 539
+      md5: 30c40aa4d90defdac3557e9fdada5ada
+      size: 537
     outs:
     - path: ../../artifacts/f1/data/raw/circuits.csv
       hash: md5
@@ -97,10 +97,34 @@ stages:
       size: 1721961
     - path: prepare_data.py
       hash: md5
-      md5: c0c8433f12b50eb63af77f9dfc3659b9
-      size: 1503
+      md5: 6a197877447de887e51aa97ee8c6ef68
+      size: 1505
     outs:
     - path: ../../artifacts/f1/data/prepared/prepared_data.csv
       hash: md5
       md5: f7852b909fd9238027870ff230ea9654
       size: 9954973
+  feature_engineering:
+    cmd: python feature_engineering.py
+    deps:
+    - path: ../../artifacts/f1/data/prepared/prepared_data.csv
+      hash: md5
+      md5: f7852b909fd9238027870ff230ea9654
+      size: 9954973
+    - path: feature_engineering.py
+      hash: md5
+      md5: 219bde81c82407934d5150e7a29a1e34
+      size: 4251
+    outs:
+    - path: ../../artifacts/f1/data/featured/test.csv
+      hash: md5
+      md5: cc20f965794a0c7615f248e06d6dfc83
+      size: 63074
+    - path: ../../artifacts/f1/data/featured/train.csv
+      hash: md5
+      md5: 5a80bcc42f5ba7518d262c4cc3955e58
+      size: 4381829
+    - path: ../../artifacts/f1/data/featured/valid.csv
+      hash: md5
+      md5: e59520f112df13b6a6c250ebb7b61165
+      size: 230731

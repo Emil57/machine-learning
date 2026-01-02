@@ -8,7 +8,8 @@ OUTPUT_DIR = os.path.join(
         "f1", 
         "data",
         "raw"
-    )    
+    )
+
 try: 
     # Make sure output directory exists
     os.makedirs(OUTPUT_DIR, exist_ok=True)
