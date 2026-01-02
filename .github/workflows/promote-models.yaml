@@ -46,11 +46,18 @@ jobs:
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: GTO Show
+      - name: Ensure GTO is working
         run: |
           poetry run gto show
 
+      - name: Check and register a new model
+        id: register
+        if : ${{ inputs.model-name != '' }}
+        run: |
+          poetry run gto register ${{ inputs.model-name }} --version v0.0.1
+
       - name: GTO Promote model
+        if: ${{ inputs.model-name != '' || steps.register.outcome == 'failed' }}
         run: |
           version=$(poetry run gto show ca-housing-model@latest --version)
 
