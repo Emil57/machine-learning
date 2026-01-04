@@ -42,3 +42,12 @@ stages:
       - ../../artifacts/f1/data/featured/train.csv
       - ../../artifacts/f1/data/featured/valid.csv
       - ../../artifacts/f1/data/featured/test.csv
+    
+  train:
+    cmd: python train_model.py
+    deps:
+      - train_model.py
+      - ../../artifacts/f1/data/featured/train.csv
+      - ../../artifacts/f1/data/featured/valid.csv
+    outs:
+      - ../../artifacts/f1/models/model.pkl

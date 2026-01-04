@@ -122,9 +122,29 @@ stages:
       size: 63074
     - path: ../../artifacts/f1/data/featured/train.csv
       hash: md5
-      md5: 5a80bcc42f5ba7518d262c4cc3955e58
-      size: 4381829
+      md5: 98efd240484672bcd29a5be495fe107e
+      size: 4378586
     - path: ../../artifacts/f1/data/featured/valid.csv
       hash: md5
       md5: e59520f112df13b6a6c250ebb7b61165
       size: 230731
+  train:
+    cmd: python train_model.py
+    deps:
+    - path: ../../artifacts/f1/data/featured/train.csv
+      hash: md5
+      md5: 9b82ef63b240dc01c130deb3878ddaeb
+      size: 4381236
+    - path: ../../artifacts/f1/data/featured/valid.csv
+      hash: md5
+      md5: e59520f112df13b6a6c250ebb7b61165
+      size: 230731
+    - path: train_model.py
+      hash: md5
+      md5: 11c2dc3ee5d9802fed2d3c3401203980
+      size: 1024
+    outs:
+    - path: ../../artifacts/f1/models/model.pkl
+      hash: md5
+      md5: a8521c6a0dcb127a69e42062ea8b94e2
+      size: 2444
