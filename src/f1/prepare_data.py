@@ -1,28 +1,14 @@
 import os
 import pandas as pd
-
-INPUT_DIR = os.path.join(
-        os.path.abspath("../../"), 
-        "artifacts", 
-        "f1", 
-        "data",
-        "raw"
-)
-OUTPUT_DIR = os.path.join(
-        os.path.abspath("../../"), 
-        "artifacts", 
-        "f1", 
-        "data",
-        "prepared"
-)
+from f1 import RAW_DATA_DIR, PREPARED_DATA_DIR 
 
 try: 
-    results = pd.read_csv(f"{INPUT_DIR}/results.csv")
-    races = pd.read_csv(f"{INPUT_DIR}/races.csv")
-    drivers = pd.read_csv(f"{INPUT_DIR}/drivers.csv")
-    constructors = pd.read_csv(f"{INPUT_DIR}/constructors.csv")
-    qualifying = pd.read_csv(f"{INPUT_DIR}/qualifying.csv")
-    constructor_results = pd.read_csv(f"{INPUT_DIR}/constructor_results.csv")
+    results = pd.read_csv(f"{RAW_DATA_DIR}/results.csv")
+    races = pd.read_csv(f"{RAW_DATA_DIR}/races.csv")
+    drivers = pd.read_csv(f"{RAW_DATA_DIR}/drivers.csv")
+    constructors = pd.read_csv(f"{RAW_DATA_DIR}/constructors.csv")
+    qualifying = pd.read_csv(f"{RAW_DATA_DIR}/qualifying.csv")
+    constructor_results = pd.read_csv(f"{RAW_DATA_DIR}/constructor_results.csv")
     print("All files loaded successfully.")
 
     df = results.merge(races, on="raceId", suffixes=("", "_race"))
@@ -36,9 +22,9 @@ try:
     print("Sorted dataframe by driverId and race_date.")
 
     #Save prepared data
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    df.to_csv(f"{OUTPUT_DIR}/prepared_data.csv", index=False)
-    print(f"Output File: {OUTPUT_DIR}/prepared_data.csv")
+    os.makedirs(PREPARED_DATA_DIR, exist_ok=True)
+    df.to_csv(f"{PREPARED_DATA_DIR}/prepared_data.csv", index=False)
+    print(f"Output File: {PREPARED_DATA_DIR}/prepared_data.csv")
 
 except FileNotFoundError as e: 
     print(f'Error: {e}')

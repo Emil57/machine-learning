@@ -51,3 +51,12 @@ stages:
       - ../../artifacts/f1/data/featured/valid.csv
     outs:
       - ../../artifacts/f1/models/model.pkl
+
+  evaluate:
+    cmd: python evaluate_model.py
+    deps:
+      - evaluate_model.py
+      - ../../artifacts/f1/models/model.pkl
+      - ../../artifacts/f1/data/featured/test.csv
+    metrics:
+      - ../../artifacts/f1/metrics/metrics.json

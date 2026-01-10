@@ -3,14 +3,7 @@ import os
 import pandas as pd
 from sklearn.preprocessing import TargetEncoder
 from f1.prepare_data import df
-
-OUTPUT_DIR = os.path.join(
-        os.path.abspath("../../"), 
-        "artifacts", 
-        "f1", 
-        "data",
-        "featured"
-)
+from f1 import FEATURE_DATA_DIR
 
 def add_driver_rollups(d): 
     d["driver_recent_points"] = (
@@ -95,16 +88,16 @@ try:
     test_te = te.transform(test[cat_cols])
 
     #Save featured data
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(FEATURE_DATA_DIR, exist_ok=True)
     train_te = pd.DataFrame(te.fit_transform(train[feat_cols], train["won"]), columns=feat_cols, index=train.index)
     valid_te = pd.DataFrame(te.transform(valid[feat_cols]), columns=feat_cols, index=valid.index)
     test_te = pd.DataFrame(te.transform(test[feat_cols]), columns=feat_cols, index=test.index)
 
-    train_te.to_csv(os.path.join(OUTPUT_DIR, "train.csv"), index=False)
-    valid_te.to_csv(os.path.join(OUTPUT_DIR, "valid.csv"), index=False)
-    test_te.to_csv(os.path.join(OUTPUT_DIR, "test.csv"), index=False)
+    train_te.to_csv(os.path.join(FEATURE_DATA_DIR, "train.csv"), index=False)
+    valid_te.to_csv(os.path.join(FEATURE_DATA_DIR, "valid.csv"), index=False)
+    test_te.to_csv(os.path.join(FEATURE_DATA_DIR, "test.csv"), index=False)
 
-    print(f"Saved featured data to {OUTPUT_DIR}")
+    print(f"Saved featured data to {FEATURE_DATA_DIR}")
 except Exception as e:
     print(f'Error in feature engineering: {e}')
     raise

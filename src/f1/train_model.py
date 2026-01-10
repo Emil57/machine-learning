@@ -3,13 +3,7 @@ import joblib
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.linear_model import SGDClassifier
 from f1.feature_engineering import train_te, train, valid_te, valid
-
-OUTPUT_DIR = os.path.join(
-        os.path.abspath("../../"), 
-        "artifacts", 
-        "f1", 
-        "models",
-    )
+from f1 import MODELS_DIR
 
 try:
     clf = SGDClassifier( 
@@ -24,9 +18,9 @@ try:
     calibrated = CalibratedClassifierCV(estimator=clf, method="sigmoid", cv="prefit")
     calibrated.fit(valid_te, valid["won"])
 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    joblib.dump(calibrated, f'{OUTPUT_DIR}/model.pkl')
-    print(f"Saved model to {OUTPUT_DIR}")
+    os.makedirs(MODELS_DIR, exist_ok=True)
+    joblib.dump(calibrated, f'{MODELS_DIR}/model.pkl')
+    print(f"Saved model to {MODELS_DIR}")
 except Exception as e:
     print(f'Error in feature engineering: {e}')
     raise

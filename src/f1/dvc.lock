@@ -5,8 +5,8 @@ stages:
     deps:
     - path: get_data.py
       hash: md5
-      md5: 30c40aa4d90defdac3557e9fdada5ada
-      size: 537
+      md5: 962150625d1ed8ec36a1762f24659e1a
+      size: 396
     outs:
     - path: ../../artifacts/f1/data/raw/circuits.csv
       hash: md5
@@ -97,8 +97,8 @@ stages:
       size: 1721961
     - path: prepare_data.py
       hash: md5
-      md5: 6a197877447de887e51aa97ee8c6ef68
-      size: 1505
+      md5: f3721be3688dd8712111442453951f4d
+      size: 1309
     outs:
     - path: ../../artifacts/f1/data/prepared/prepared_data.csv
       hash: md5
@@ -113,8 +113,8 @@ stages:
       size: 9954973
     - path: feature_engineering.py
       hash: md5
-      md5: 219bde81c82407934d5150e7a29a1e34
-      size: 4251
+      md5: edd2aebf05bb2dd29195dd00dd90ab16
+      size: 4168
     outs:
     - path: ../../artifacts/f1/data/featured/test.csv
       hash: md5
@@ -122,8 +122,8 @@ stages:
       size: 63074
     - path: ../../artifacts/f1/data/featured/train.csv
       hash: md5
-      md5: 98efd240484672bcd29a5be495fe107e
-      size: 4378586
+      md5: 88bbeeccdc2e668a8e0e5415bdd893ce
+      size: 4386476
     - path: ../../artifacts/f1/data/featured/valid.csv
       hash: md5
       md5: e59520f112df13b6a6c250ebb7b61165
@@ -133,18 +133,38 @@ stages:
     deps:
     - path: ../../artifacts/f1/data/featured/train.csv
       hash: md5
-      md5: 9b82ef63b240dc01c130deb3878ddaeb
-      size: 4381236
+      md5: 9f0d5916603844d8128d37bfd2044872
+      size: 4382328
     - path: ../../artifacts/f1/data/featured/valid.csv
       hash: md5
       md5: e59520f112df13b6a6c250ebb7b61165
       size: 230731
     - path: train_model.py
       hash: md5
-      md5: 11c2dc3ee5d9802fed2d3c3401203980
-      size: 1024
+      md5: 82f9b9bc5bf1d76782f72dc0f1dc0ff0
+      size: 919
     outs:
     - path: ../../artifacts/f1/models/model.pkl
       hash: md5
-      md5: a8521c6a0dcb127a69e42062ea8b94e2
+      md5: cd1172068f6d9a069adea494180840d8
       size: 2444
+  evaluate:
+    cmd: python evaluate_model.py
+    deps:
+    - path: ../../artifacts/f1/data/featured/test.csv
+      hash: md5
+      md5: cc20f965794a0c7615f248e06d6dfc83
+      size: 63074
+    - path: ../../artifacts/f1/models/model.pkl
+      hash: md5
+      md5: cd1172068f6d9a069adea494180840d8
+      size: 2444
+    - path: evaluate_model.py
+      hash: md5
+      md5: 2d953ae07530d8cfef18e89a500697b9
+      size: 1211
+    outs:
+    - path: ../../artifacts/f1/metrics/metrics.json
+      hash: md5
+      md5: d07203847a2ee5db07341385b6496cd8
+      size: 164
