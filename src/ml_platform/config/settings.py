@@ -7,6 +7,7 @@ Pydantic Settings.
 
 from pathlib import Path
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -30,8 +31,12 @@ class Settings(BaseSettings):
     mlflow_registry_uri: str = "sqlite:///mlflow.db"
     mlflow_experiment_name: str = "default"
 
+    serving_model_name: str = "f1-predictor"
+    serving_model_alias: str = "champion"
+    serving_host: str = "0.0.0.0"
+    serving_port: int = Field(default=8000, ge=1, le=65535)
+
     model_config = SettingsConfigDict(
-        env_prefix="ML_",
         env_file=".env",
         extra="ignore",
     )
